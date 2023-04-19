@@ -1,0 +1,225 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 34598615
+    name: "MyIngress.request_exact"
+    alias: "request_exact"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.request.requestType"
+    bitwidth: 16
+    match_type: EXACT
+  }
+  action_refs {
+    id: 18108329
+  }
+  action_refs {
+    id: 28542691
+  }
+  action_refs {
+    id: 19548484
+  }
+  action_refs {
+    id: 22175010
+  }
+  action_refs {
+    id: 21598991
+  }
+  action_refs {
+    id: 18231231
+  }
+  action_refs {
+    id: 18738913
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 37375156
+    name: "MyIngress.ipv4_lpm"
+    alias: "ipv4_lpm"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 28792405
+  }
+  action_refs {
+    id: 25652968
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 21257015
+    name: "NoAction"
+    alias: "NoAction"
+    annotations: "@noWarn(\"unused\")"
+  }
+}
+actions {
+  preamble {
+    id: 25652968
+    name: "MyIngress.drop"
+    alias: "drop"
+  }
+}
+actions {
+  preamble {
+    id: 18108329
+    name: "MyIngress.get_handler"
+    alias: "get_handler"
+  }
+}
+actions {
+  preamble {
+    id: 28542691
+    name: "MyIngress.put_handler"
+    alias: "put_handler"
+  }
+}
+actions {
+  preamble {
+    id: 19548484
+    name: "MyIngress.range_handler"
+    alias: "range_handler"
+  }
+}
+actions {
+  preamble {
+    id: 22175010
+    name: "MyIngress.load_balance_put"
+    alias: "load_balance_put"
+  }
+}
+actions {
+  preamble {
+    id: 21598991
+    name: "MyIngress.load_balance_other"
+    alias: "load_balance_other"
+  }
+}
+actions {
+  preamble {
+    id: 18231231
+    name: "MyIngress.ping_handler"
+    alias: "ping_handler"
+  }
+}
+actions {
+  preamble {
+    id: 18738913
+    name: "MyIngress.pong_handler"
+    alias: "pong_handler"
+  }
+}
+actions {
+  preamble {
+    id: 28792405
+    name: "MyIngress.ipv4_forward"
+    alias: "ipv4_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+registers {
+  preamble {
+    id: 384932089
+    name: "MyIngress.db"
+    alias: "db"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 6150
+}
+registers {
+  preamble {
+    id: 375011480
+    name: "MyIngress.latest_version"
+    alias: "latest_version"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 1025
+}
+registers {
+  preamble {
+    id: 369250691
+    name: "MyIngress.packet_num"
+    alias: "packet_num"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 380772241
+    name: "MyIngress.pings"
+    alias: "pings"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+registers {
+  preamble {
+    id: 371601123
+    name: "MyIngress.pongs"
+    alias: "pongs"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 32
+      }
+    }
+  }
+  size: 2
+}
+type_info {
+}

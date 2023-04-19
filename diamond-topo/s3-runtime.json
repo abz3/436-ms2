@@ -1,0 +1,77 @@
+{
+  "target": "bmv2",
+  "p4info": "build/hw2.p4.p4info.txt",
+  "bmv2_json": "build/hw2.json",
+  "table_entries": [
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.1.1", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "08:00:00:00:01:11",
+        "port": 1
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.2.2", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "08:00:00:00:02:22",
+        "port": 1
+      }
+    },
+    {
+      "table": "MyIngress.request_exact",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.request_exact",
+      "match": {
+        "hdr.request.requestType": [1]
+      },
+      "action_name": "MyIngress.get_handler",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.request_exact",
+      "match": {
+        "hdr.request.requestType": [2]
+      },
+      "action_name": "MyIngress.put_handler",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.request_exact",
+      "match": {
+        "hdr.request.requestType": [3]
+      },
+      "action_name": "MyIngress.range_handler",
+      "action_params": {
+      }
+    },
+    {
+      "table": "MyIngress.request_exact",
+      "match": {
+        "hdr.request.requestType": [5]
+      },
+      "action_name": "MyIngress.ping_handler",
+      "action_params": {
+      }
+    }
+  ]
+}
